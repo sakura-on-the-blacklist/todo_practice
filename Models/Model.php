@@ -31,7 +31,8 @@ class Model
         // prepare
         // dbhのメソッド
         // PDOインスタンスのメソッド
-        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table);
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . ' WHERE id = ?');
+
 
         // $dbh === PDOクラスのインスタンス
         // $dbh->prepare('SELECT * FROM ' . $this->table);
@@ -47,6 +48,17 @@ class Model
     }
 
     // * findById()を以下に追加する
+    public function findById($id)
+    {
+         //    preparation
+         $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . 'WHERE id = ?' );
+         //  execution
+         $stmt->execute([$id]);
+         $task = $stmt->fetch();
+
+         return $task;
+
+    }
 
 
     
