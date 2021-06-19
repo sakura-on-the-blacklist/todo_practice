@@ -12,7 +12,7 @@ $currentTime = date("Y/m/d H:i:s");
 $task = new Task();
 $task->create([$title, $contents, $currentTime]);
 
-// リダイレクト
+// リダイレクト 
 header('location:index.php');
 exit;
 
