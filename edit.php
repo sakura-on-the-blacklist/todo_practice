@@ -1,18 +1,17 @@
 <?php
-// * 下記を追加
-// 1. ファイルの読み込み
+    // ファイルの読み込み
+    require_once('Models/Task.php');
+    require_once('function.php');
 
+    // データの受け取り
+    $id = $_GET['id'];
 
-// 2. データの受け取り
-
-
-// 3. DBへのデータ保存
-
-
+    // DBからデータを取得
+    $task = (new Task())->findById($id);
+    // var_dump($task);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,6 @@
     <title>編集 | Todoアプリ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-
 <body>
     <div class="container-fulid">
         <div class="row">
@@ -30,7 +28,6 @@
                 </nav>
             </div>
         </div>
-
         <div class="row mt-4 px-4">
             <div class="col-12">
                 <form action="update.php" method="post">
@@ -48,7 +45,7 @@
                             <label class="custom-file-label" for="image">Choose file</label>
                         </div>
                     </div>
-                    <input type="hidden" name="id" value="<?= h($task['id']); ?>">
+                    <input type="hidden" name="id" value="<?= $task['id']; ?>">
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">UPDATE</button>
                     </div>
@@ -56,8 +53,5 @@
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>

@@ -1,14 +1,15 @@
 <?php 
-// deleteの処理内容を以下に書く
 
-// 1. ファイルの読み込み
+// ファイルの読み込み
+require_once('Models/Task.php');
 
+// データの受け取り
+$id = $_POST['id']; 
 
-// 2. データの受け取り
+// DBからデータの削除
+$task = new Task();
+$task->delete([$id]);
 
-
-// 3. DBからデータの削除
-
-
-// 4. リダイレクト
-
+// リダイレクト
+header("location: index.php");
+exit;

@@ -11,8 +11,7 @@ class Model
     // インスタンス化した時に呼ばれるメソッド
     public function __construct()
     {
-        // db_managerプロパティは、
-        // DbManagerクラスのインスタンス
+        
         $this->db_manager = new DbManager();
         $this->db_manager->connect();
     }
@@ -41,14 +40,27 @@ class Model
 
         // 実行結果を取得
         $tasks = $stmt->fetchAll();
+        // fetchAllは全件取得の関数
 
         // return === 関数の呼び出し元に、値を返す
         return $tasks;
     }
 
     // * findById()を以下に追加する
+    public function findById($id)
+    {
+        // 準備
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' .
+        $this->table . ' WHERE id = ?');
 
+        // 実行
+        $stmt->execute([$id]);
 
+        $task = $stmt->fetch();
+        // fetchは一個だけを取り出す組み込み関数。
+
+        return $task;
+    }
     
 
     
